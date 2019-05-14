@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.row{
+  margin-right:0;
+  margin-left:0;
+}
+
+#cityForm {
+padding-left: 15px;
+margin-bottom: 1rem;
+}
+
+select{
+  min-width:90px;
+}
+
+label[for] {
+  margin-right: 0.5rem;
+  font-weight: bold;
+}
+
+ul{
+  margin-bottom:0;
+}
+
+.pagination li {
+  margin-right: 0.3rem;
+}
+
+.pagination li.active a{
+  color:#021d1d;
+} 
+
+#bank .col-xs-8  {
+  position: relative;
+  margin-left: auto;
+}
+
+.pagination {
+  position: absolute;
+  bottom:0;
+  right:0;
+}
+
+@media only screen and (max-width: 435px) {
+  .pagination{
+    position: static;
+  }
+}
+
