@@ -7,7 +7,15 @@ require('react-data-components/css/table-twbs.css');
 require('./index.css');
 
 var columns = [
-  { title: 'Bank Name', prop: 'bank_name'  }  
+  { title: 'Bank Name', prop: 'bank_name'  },
+  { title: 'Address', prop: 'address' },
+  { title: 'BankID', prop: 'bank_id' },
+  { title: 'Bank Name', prop: 'bank_name'  },
+  { title: 'Branch', prop: 'branch' },
+  { title: 'City', prop: 'city' },
+  { title: 'District', prop: 'district'  },
+  { title: 'State', prop: 'state' }
+
 ];
 
 class City extends React.Component {
@@ -15,7 +23,8 @@ class City extends React.Component {
         super(props);
         this.state = {
             value: 'JAIPUR',
-            bankNames : {}
+            bankNames : {},
+            fetchedData: {}
         };
     }
 
@@ -28,7 +37,7 @@ class City extends React.Component {
     fetchdata = ({city}) => {
 
         //check whether the corresponding city data is present in Cache memory
-        if(!this.state.bankNames[city]){
+        if(!this.state.fetchedData[city]){
             // if data is not present in the Cache memory, fetch the required data and add it to the cache
 
             fetch(`https://vast-shore-74260.herokuapp.com/banks?city=${city}`)
@@ -37,6 +46,15 @@ class City extends React.Component {
                 const data = finalResponse.map(item => {
                     return item;
                 })
+
+                // Add the data to the state object with a key named fetcheddata 
+                // which contains the name of required City as the keyname
+                const finalData = {...this.state.fetchedData};
+                finalData[city] = data
+                this.setState({
+                    fetchedData: finalData
+                }) 
+
 
                 // use lodash package for filtering the data uniquely with bank_name
                 const bankNames = _.uniqBy(data, 'bank_name' );
@@ -78,12 +96,12 @@ class City extends React.Component {
                 </form>
 
                 <DataTable
-                    className="container"
-                    keys="bank_name"
+                    className="table-data"
+                    keys="ifsc"
                     columns={columns}
-                    initialData={this.state.bankNames[city]}
+                    initialData={this.state.fetchedData[city]}
                     initialPageLength={10}
-                    initialSortBy={{ prop: 'bank_name', order: 'ascending' }}
+                    initialSortBy={{ prop: 'ifsc', order: 'ascending' }}
                     pageLengthOptions={[ 10, 15, 20 ]}
                 />
             </section>
