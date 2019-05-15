@@ -7,7 +7,7 @@ require('react-data-components/css/table-twbs.css');
 require('./index.css');
 
 var columns = [
-  { title: 'Bank Name', prop: 'bank_name'  },
+  { title: 'IFSC', prop: 'ifsc'  },
   { title: 'Address', prop: 'address' },
   { title: 'BankID', prop: 'bank_id' },
   { title: 'Bank Name', prop: 'bank_name'  },
